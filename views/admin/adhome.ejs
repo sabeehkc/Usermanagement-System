@@ -19,7 +19,17 @@
                     <td><%= users[i].name %> </td>
                     <td><%= users[i].email %> </td>
                     <td><%= users[i].mobile %> </td>
-                    <td><%= users[i].is_verified %> </td>
+                    <td><%
+                        if(users[i].is_verified == 0){
+                            %>
+                             <p>Not Verified</p>   
+                            <%
+                        }else{
+                            %>
+                            <p>Verified</p>
+                            <% 
+                        }
+                        %> </td>
                 </tr>
                 <%
             }
