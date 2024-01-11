@@ -1,0 +1,53 @@
+<%- include('../layout/header.ejs') %>
+
+<div class=" center-div mt-5" id="login">
+    <div class="container w-25 border py-5 border-info rounded">
+        <div class="title text-center pb-5">
+            <h2 class="font-weight-bold">Admin System</h2>
+        </div>
+        <% 
+        if(typeof message !== 'undefined'){
+          %>
+           <small style="color: red;">  <%= message %>   </small>
+           <%
+        }
+
+%>
+        <form action="" method="POST" class="pt-2">
+            <div class="form-group pb-3">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" placeholder="" name="email" required >
+            </div>
+            <div class="form-group pb-3">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" placeholder="" required >
+         </div>
+         
+         <div class="submit-button text-center mt-3">
+            <button type="submit" class="btn-sumbit rounded-pill">Submit</button>
+         </div>
+         
+        </form>
+    </div>
+</div>
+
+<style>
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-image: url('../assets/register.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btn-sumbit{
+    background: rgb(244,244,244);
+background: linear-gradient(154deg, rgba(244,244,244,1) 0%, rgba(0,0,0,1) 0%, rgba(204,231,255,1) 3%, rgba(13,105,184,1) 26%, rgba(37,91,136,1) 33%, rgba(8,39,77,1) 60%, rgba(6,2,1,1) 100%);
+ color: white;
+}
+.form-control{
+  background-color: rgba(255, 255, 255, 0.539);  
+}
+</style>
+
+
+<%- include('../layout/footer.ejs') %>
