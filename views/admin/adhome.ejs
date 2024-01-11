@@ -1,3 +1,42 @@
-<h1>Welcome to Admin Page</h1>
+
+<input type="search">
+
+
+
+<table width="50%">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Verified</th>
+    </tr>
+
+    <% 
+        if(users.length > 0){
+            for(let i=0;i<users.length;i++){
+                %>
+                <tr>
+                    <td><%= users[i].name %> </td>
+                    <td><%= users[i].email %> </td>
+                    <td><%= users[i].mobile %> </td>
+                    <td><%= users[i].is_verified %> </td>
+                </tr>
+                <%
+            }
+            
+        }else{
+            %>
+            <tr>
+                <td colspan="S">Users Not Found</td>
+            </tr>
+            <%
+        }
+    %>
+
+
+</table>
+<br>
+
+
 
 <a href="/admin/logout">Logout</a>

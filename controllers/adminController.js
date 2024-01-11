@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const loadlogin = async(req,res)=>{
     try {
         
-        res.render('adlogin');
+        res.render('adlogin',{title:"Admin page"});
 
     } catch (error) {
         console.log(error.message)
@@ -48,9 +48,10 @@ const verifyLogin = async(req,res)=>{
 }
 
 //admin home page
-const loadDashnoard = async(req,res)=>{
+const loadDashboard = async(req,res)=>{
     try {
-        res.render('adhome');
+        const usersData = await User.find({is_admin:0});
+        res.render('adhome',{users:usersData});
         
     } catch (error) {
         console.log(error.message);
@@ -72,6 +73,6 @@ const logout = async(req,res)=>{
 module.exports = {
     loadlogin,
     verifyLogin,
-    loadDashnoard,
+    loadDashboard,
     logout
 }

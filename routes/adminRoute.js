@@ -30,7 +30,7 @@ admin_route.get('/',adminController.loadlogin)
 admin_route.post('/',auth.isLogout,adminController.verifyLogin);
 
 //admin home
-admin_route.get('/home',auth.isLogin,adminController.loadDashnoard);
+admin_route.get('/home',auth.isLogin,adminController.loadDashboard);
 
 
 admin_route.get('/logout',auth.isLogin,adminController.logout);
