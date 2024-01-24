@@ -1,7 +1,9 @@
+<%- include('../layout/header.ejs') %>
 
-<input type="search">
+<input type="search" class="w-50"><br>
 
-
+<a href="/admin/new-user">Add New User</a>
+<br><br>
 
 <table width="50%">
     <tr>
@@ -49,4 +51,17 @@
 
 
 
+
 <a href="/admin/logout">Logout</a>
+
+<style>
+body{
+    font-family: 'Open Sans', sans-serif;
+    /* background-image: url('../assets/img.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+</style>
+
+
+<%- include('../layout/footer.ejs') %>

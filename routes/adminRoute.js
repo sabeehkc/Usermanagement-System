@@ -32,8 +32,12 @@ admin_route.post('/',auth.isLogout,adminController.verifyLogin);
 //admin home
 admin_route.get('/home',auth.isLogin,adminController.loadDashboard);
 
-
+//admin logout
 admin_route.get('/logout',auth.isLogin,adminController.logout);
+
+//admin add new user
+admin_route.get('/new-user',auth.isLogin,adminController.newUserLoad);
+admin_route.post('/new-user',adminController.addUser);
 
 //any type goign admin loginpage
 admin_route.get('*',function(req,res){

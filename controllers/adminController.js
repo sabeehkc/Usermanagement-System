@@ -1,5 +1,16 @@
 const User = require("../models/userModel");
 const bcrypt = require('bcrypt');
+const randomstring = require('randomstring');
+
+const securePassword = async(password)=>{
+    try{
+        const passwordHash =  bcrypt.hash(password,10);
+        return passwordHash;
+        
+    }catch (error){
+        console.log(error.message);
+    }
+}
 
 //admin login page
 const loadlogin = async(req,res)=>{
@@ -51,7 +62,7 @@ const verifyLogin = async(req,res)=>{
 const loadDashboard = async(req,res)=>{
     try {
         const usersData = await User.find({is_admin:0});
-        res.render('adhome',{users:usersData});
+        res.render('adhome',{users:usersData,title: "Admin Home"});
         
     } catch (error) {
         console.log(error.message);
@@ -70,9 +81,50 @@ const logout = async(req,res)=>{
     }
 }
 
+//add new user work start 
+const newUserLoad = async(req,res)=>{
+    try {
+        res.render('new-user',{message: "",title:"Add New User"})
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const addUser  = async(req,res)=>{
+    try {
+       const name = req.body.name;
+       const email = req.body.email;
+       const mno = req.body.mno;
+       const password = randomstring.generate(8);
+       
+        const spassword = await securePassword(password);
+
+        const user =  new User({
+            name:name,
+            email:email,
+            password:spassword,
+            mobile:mno,
+            is_admin:0
+        });
+
+        const userData = await user.save();
+        if (userData) {
+
+            res.redirect('/admin/home')
+        } else {
+            res.render('new-user',{message:"Something wrong"})
+        }
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     loadlogin,
     verifyLogin,
     loadDashboard,
-    logout
+    logout,
+    newUserLoad,
+    addUser
 }
