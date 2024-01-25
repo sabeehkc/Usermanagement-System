@@ -1,8 +1,8 @@
 <%- include('../layout/header.ejs') %>
 
-<div class=" center-div mt-2  " >
-    <div class="container w-25 border py-5  border-info rounded">
-        <div class="title text-center pb-5 ">
+<div class=" center-div mt-3 " >
+    <div class="container w-25  rounded">
+        <div class="title text-center pb-3 ">
             <h2 class="font-weight-bold">Signup Page</h2>
             
         </div>
@@ -20,7 +20,7 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" name="password" placeholder="" required>
          </div>
-         <div class="form-group pb-3">
+         <div class="form-group ">
             <label for="mobile">Mobile No:</label>
             <input type="text" class="form-control" name="mno" placeholder="" required >
      </div> 
@@ -33,11 +33,10 @@
      
        %>
        <br>
-
-         <div class="submit-button text-center">
-            <button type="submit" value="Register" class="btn-sumbit rounded-pill mt-2 w-25 border-0 ">Submit</button>
-         </div>
-         <a class="login text-success" href="/">Login</a>
+       <div class="submit-button text-center pt-1">
+        <button type="submit" class="btn-sumbit rounded-pill w-75">Submit</button>
+     </div>
+        <p class="log-text">Already have an acoount? <a class="login " href="/">Login</a> </p> 
         </form>
 
     </div>
@@ -45,23 +44,6 @@
 
 
 
-<style>
-    body{
-        font-family: 'Open Sans', sans-serif;
-        background-image: url('../assets/img.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-    
-    .btn-sumbit{
-        background: rgb(244,244,244);
-    background: linear-gradient(154deg, rgba(244,244,244,1) 0%, rgba(0,0,0,1) 0%, rgba(204,231,255,1) 3%, rgba(13,105,184,1) 26%, rgba(37,91,136,1) 33%, rgba(8,39,77,1) 60%, rgba(6,2,1,1) 100%);
-     color: white;
-    }
-    .form-control{
-      background-color: rgba(255, 255, 255,0.7);  
-    }
-    </style>
 
 
 <%- include('../layout/footer.ejs') %>

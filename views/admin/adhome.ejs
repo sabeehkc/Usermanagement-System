@@ -1,67 +1,63 @@
 <%- include('../layout/header.ejs') %>
 
-<input type="search" class="w-50"><br>
+<h1 class="admin-head">Welcome to Admin Page</h1>
+ 
 
-<a href="/admin/new-user">Add New User</a>
-<br><br>
-
-<table width="50%">
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Mobile</th>
-        <th>Verified</th>
-    </tr>
-
-    <% 
-        if(users.length > 0){
-            for(let i=0;i<users.length;i++){
+<br>
+<div class=" w-100 px-5">
+    <input type="search" class="w-100" placeholder="Enter name"><br>
+    <table  class="table ">
+        <thead class="table-dark">
+            <th>User Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Actions</th>
+        </thead>
+    
+        <% 
+            if(users.length > 0){
+                for(let i=0;i<users.length;i++){
+                    %>
+                    <tbody>
+                        <td><%= i+1 %></td>
+                        <td><%= users[i].name %> </td>
+                        <td><%= users[i].email %> </td>
+                        <td><%= users[i].mobile %> </td>
+                        <td><%
+                            if(users[i].is_verified == 0){
+                                %>
+                                 <p>Not Verified</p>   
+                                <%
+                            }else{
+                                %>
+                                <p>Verified</p>
+                                <% 
+                            }
+                            %> </td>
+                    </tbody>
+                    <%
+                }
+                
+            }else{
                 %>
-                <tr>
-                    <td><%= users[i].name %> </td>
-                    <td><%= users[i].email %> </td>
-                    <td><%= users[i].mobile %> </td>
-                    <td><%
-                        if(users[i].is_verified == 0){
-                            %>
-                             <p>Not Verified</p>   
-                            <%
-                        }else{
-                            %>
-                            <p>Verified</p>
-                            <% 
-                        }
-                        %> </td>
-                </tr>
+                <tbody>
+                    <td colspan="S">Users Not Found</td>
+                </tbody>
                 <%
             }
-            
-        }else{
-            %>
-            <tr>
-                <td colspan="S">Users Not Found</td>
-            </tr>
-            <%
-        }
-    %>
+        %>
+    
+    
+    </table>
+
+</div>
+<div class="admin-new-logout w-100 px-5 mb-5">
+<button> <a href="/admin/new-user">Add New User</a> </button> 
+<button>  <a href="/admin/logout">Logout</a> </button>
+</div>
 
 
-</table>
-<br>
-
-
-
-
-<a href="/admin/logout">Logout</a>
-
-<style>
-body{
-    font-family: 'Open Sans', sans-serif;
-    /* background-image: url('../assets/img.jpg');
-    background-size: cover;
-    background-repeat: no-repeat; */
-}
-</style>
 
 
 <%- include('../layout/footer.ejs') %>

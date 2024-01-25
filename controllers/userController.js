@@ -69,18 +69,18 @@ const verifyLogin = async(req,res)=>{
      const passwordMatch = bcrypt.compare(password,userData.password);
         if (passwordMatch) {
             if(userData.is_verified === 0 ){
-                res.render('login',{message:"Email or password is incorrect"});
+                res.render('login',{message:"Email or password is incorrect!"});
             }else{
                 req.session.user_id = userData._id;
                 res.redirect('/home');
             }
         
         } else {
-             res.render('login',{message:"Email and password is incorrect"});
+             res.render('login',{message:"Email and password is incorrect!"});
         }
 
      }else{
-        res.render('login',{message:"Email and password is incorrect"});
+        res.render('login',{message:"Email and password is incorrect!"});
      }
         
     } catch (error) {

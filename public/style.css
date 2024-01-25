@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+
+body{
+    font-family: "Poppins", sans-serif;
+    background-image: url('../assets/img.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btn-sumbit{
+    border: none;
+    background: rgb(244,244,244);
+    color: rgb(0, 0, 0);
+}
+.form-control{
+  background-color: rgba(255, 255, 255, 0.621);  
+}
+.signup{
+    text-decoration: none;
+    color: white;
+}
+.reg-text{
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 15px;
+}
+.container{
+    background: transparent;
+    border: 2px solid rgba(225, 225, 225, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0,.2);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 30px;
+}
+.login {
+    text-decoration: none;
+color: white;
+}
+.log-text{
+    margin-top: 20px;
+color: rgba(255, 255, 255, 0.55);
+font-size: 15px; 
+}
+.Goback{
+    text-decoration: none;
+}
+.admin-new-logout a{
+   
+    color:black;
+    text-decoration: none;
+}  
+.admin-new-logout{
+    display: flex;
+justify-content: space-between;
+}
+.admin-new-logout button{
+    border: none;
+    background: rgb(244,244,244);
+    color: rgb(0, 0, 0);
+    border-radius: 14px;
+}
+.admin-head{
+    text-align: center;
+    color: white;
+}

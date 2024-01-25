@@ -1,32 +1,33 @@
 <%- include('../layout/header.ejs') %>
 
 <div class=" center-div mt-5" id="login">
-    <div class="container w-25 border py-5 border-info rounded">
-        <div class="title text-center pb-5">
+    <div class="container w-25 py-5  rounded">
+        <div class="title text-center pb-2">
             <h2 class="font-weight-bold">Login System</h2>
             <span>Log in for the existing user</span>
            
         </div>
-        <% 
-        if(typeof message !== 'undefined'){
-          %>
-           <small style="color: red;">  <%= message %>   </small>
-           <%
-        }
-
-%>
+      
 <br>
-        <form action="/login" method="POST" class="pt-2">
+        <form action="/login" method="POST" class="">
             <div class="form-group pb-3">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" placeholder="" name="email" required >
             </div>
-            <div class="form-group pb-3">
+            <div class="form-group pb-2">
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" name="password" placeholder="" required >
          </div>
+         <% 
+         if(typeof message !== 'undefined'){
+           %>
+            <small style="color: rgb(238, 226, 226);">  <%= message %>   </small>
+            <%
+         }
+ 
+ %>
          
-         <div class="submit-button text-center">
+         <div class="submit-button text-center pt-2">
             <button type="submit" class="btn-sumbit rounded-pill w-75">Submit</button>
          </div>
         <p class="reg-text">
@@ -35,35 +36,5 @@
         </form>
     </div>
 </div>
-
-<style>
-body{
-    font-family: 'Open Sans', sans-serif;
-    background-image: url('../assets/img.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.btn-sumbit{
-    border: none;
-    background: rgb(244,244,244);
-    color: rgb(0, 0, 0);
-}
-.form-control{
-  background-color: rgba(255, 255, 255,0.7);  
-}
-.signup{
-    text-decoration: none;
-    color: white;
-}
-.reg-text{
-    margin-top: 20px;
-    color: rgba(255, 255, 255, 0.55);
-}
-</style>
-
-
-
-
 
 <%- include('../layout/footer.ejs') %>
