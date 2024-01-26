@@ -8,7 +8,7 @@ const securePassword = async (password) => {
     } catch (error) {
         console.log(error.message);
     }
-}
+};
 
 const loadRegister = async(req,res)=>{
     try{
@@ -18,7 +18,7 @@ const loadRegister = async(req,res)=>{
     }catch (error){
         console.log(error.message);
     }
-}
+};
 
 const insertUser = async(req,res)=>{
     try{
@@ -42,26 +42,29 @@ const insertUser = async(req,res)=>{
     }catch(error){ 
         console.log(error.message);
     }
-}
+};
 
 //login user methods started
 
 const loginLoad = async(req, res)=>{
    try {
-
-    res.render('login',{title:"Login Page"});
-    
+    if(req.session.user_id){
+        res.redirect('/home')
+    }else{
+        res.render('login',{title:"Login Page"});
+    }
+   
    } catch (error) {
         console.log(error.message);
    } 
-}
+};
 
 const verifyLogin = async(req,res)=>{
     try {
         const email = req.body.email;
         const password= req.body.password;
 
-     const userData = await User.findOne({email:email});
+     const userData = await User.findOne({email:email, is_admin: 0});
 
      if(userData){
 
@@ -85,29 +88,31 @@ const verifyLogin = async(req,res)=>{
     } catch (error) {
         console.log(error.message);
     }
-}
+};
 
 // Home page
 const loadHome = async(req,res)=>{
     try {
-        
-        res.render('home',{title:"Home Page"})
+        if(req.session.user_id){
+            res.render('home',{title:"Home Page"})
+        }else{
+            res.redirect('/')
+        }
         
     } catch (error) {
         console.log(error.message);
     }
-}
+};
 
 const userLogout = async(req,res)=>{
     try {
-
-        req.session.destroy();
+        req.session.user_id = null;
         res.redirect('/');
         
     } catch (error) {
         console.log(error.message);
     }
-}
+};
 
 module.exports = {
     loadRegister,
@@ -116,4 +121,4 @@ module.exports = {
     verifyLogin,
     loadHome,
     userLogout
-}
+};

@@ -4,13 +4,15 @@ const session =  require("express-session");
 
 const config = require("../confiq/config");
 
-user_route.use(session({secret:config.sessionSecret}));
+user_route.use(
+    session({
+        secret: config.sessionSecret,
+        resave: false,
+        saveUninitialized: false,
+    })
+);
 
 const auth = require('../middleware/auth');
-
-const nocashe = require('nocache');
-
-user_route.use(nocashe())
 
 //set view engine
 user_route.set('view engine','ejs');

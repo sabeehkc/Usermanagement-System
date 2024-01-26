@@ -5,7 +5,8 @@
 
 <br>
 <div class=" w-100 px-5">
-    <input type="search" class="w-100" placeholder="Enter name"><br>
+    <label for="searchInput" class="form-label">Search by Name:</label>
+    <input type="search" id="searchInput" class="w-100" placeholder="Enter name"><br>
     <table  class="table ">
         <thead class="table-dark">
             <th>User Id</th>
@@ -24,18 +25,10 @@
                         <td><%= users[i].name %> </td>
                         <td><%= users[i].email %> </td>
                         <td><%= users[i].mobile %> </td>
-                        <!-- <td><%
-                            if(users[i].is_verified == 0){
-                                %>
-                                 <p>Not Verified</p>   
-                                <%
-                            }else{
-                                %>
-                                <p>Verified</p>
-                                <% 
-                            }
-                            %> </td> -->
-                            <td><button class="edit-btn"> <a class="edit-text" href="/admin/edit-user?id=<%= users[i]._id %>">Edit</a></button> </td>
+                        <td>
+                            <button class="edit-btn"> <a class="edit-text" href="/admin/edit-user?id=<%= users[i]._id %>">Edit </a></button>
+                            <button class="delete-btn"> <a class="delete-text" href="/admin/delete-usre?id=<%= users[i]._id %>">Delete</a></button>
+                        </td>
                     </tbody>
                     <%
                 }
@@ -59,6 +52,29 @@
 </div>
 
 
+<script>
+      const searchInput = document.getElementById('searchInput');
+  const tableRows = document.querySelectorAll('tbody tr');
+
+  searchInput.addEventListener('input', function () {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    tableRows.forEach(row => {
+      const userName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+      row.style.display = userName.includes(searchTerm) ? '' : 'none';
+    });
+  });
+</script>
+<script>
+  window.addEventListener('pageshow', function (event) {
+    // Check if the page is shown from the session history
+    if (event.persisted) {
+      // Reload the page to prevent cached content
+      window.location.reload();
+    }
+  });
+  
+</script>
 
 
 <%- include('../layout/footer.ejs') %>
