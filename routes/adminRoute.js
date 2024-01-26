@@ -9,7 +9,7 @@ admin_route.use(session({secret:config.sessionSecret}));
 //body_parser
 const bodyParser = require("body-parser");
 admin_route.use(bodyParser.json());
-admin_route.use(bodyParser.urlencoded({extented:true}));
+admin_route.use(bodyParser.urlencoded({extended:true}));
 
 //set view engine
 admin_route.set('view engine','ejs');
@@ -17,9 +17,9 @@ admin_route.set('views','./views/admin');
 
 const auth = require("../middleware/adminAuth");
 
-// const nocashe = require('nocache');
+const nocashe = require('nocache');
 
-// admin_route.use(nocashe())
+admin_route.use(nocashe())
 
 const adminController = require("../controllers/adminController");
 
@@ -38,6 +38,11 @@ admin_route.get('/logout',auth.isLogin,adminController.logout);
 //admin add new user
 admin_route.get('/new-user',auth.isLogin,adminController.newUserLoad);
 admin_route.post('/new-user',adminController.addUser);
+
+//admin edit user
+admin_route.get('/edit-user',auth.isLogin,adminController.editUserLoad);
+admin_route.post('/edit-user',adminController.updateUsers);
+
 
 //any type goign admin loginpage
 admin_route.get('*',function(req,res){

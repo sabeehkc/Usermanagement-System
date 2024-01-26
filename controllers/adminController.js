@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 const bcrypt = require('bcrypt');
-const randomstring = require('randomstring');
+
 
 const securePassword = async(password)=>{
     try{
@@ -94,8 +94,9 @@ const addUser  = async(req,res)=>{
     try {
        const name = req.body.name;
        const email = req.body.email;
+       const password = req.body.password;
        const mno = req.body.mno;
-       const password = randomstring.generate(8);
+       
        
         const spassword = await securePassword(password);
 
@@ -120,11 +121,41 @@ const addUser  = async(req,res)=>{
     }
 }
 
+//edit user
+const editUserLoad = async(req,res)=> {
+    try {
+        const id = req.query.id;
+        const userData =  await User.findById({ _id:id })
+        if (userData) {
+            res.render('edit-user',{ user:userData ,title:"Edit User"});    
+        }else{
+            res.redirect('/admin/home');
+        }
+        
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const updateUsers = async(req,res)=>{
+    try {
+     const  userData = await User.findByIdAndUpdate({ _id:req.body.id },{$set:{ name:req.body.name, email:req.body.email, mobile:req.body.mno }})
+
+        res.redirect('/admin/home');
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     loadlogin,
     verifyLogin,
     loadDashboard,
     logout,
     newUserLoad,
-    addUser
+    addUser,
+    editUserLoad,
+    updateUsers
 }

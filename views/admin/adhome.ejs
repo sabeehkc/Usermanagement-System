@@ -12,7 +12,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Mobile</th>
-            <th>Actions</th>
+            <th>Action</th>
         </thead>
     
         <% 
@@ -24,7 +24,7 @@
                         <td><%= users[i].name %> </td>
                         <td><%= users[i].email %> </td>
                         <td><%= users[i].mobile %> </td>
-                        <td><%
+                        <!-- <td><%
                             if(users[i].is_verified == 0){
                                 %>
                                  <p>Not Verified</p>   
@@ -34,7 +34,8 @@
                                 <p>Verified</p>
                                 <% 
                             }
-                            %> </td>
+                            %> </td> -->
+                            <td><button class="edit-btn"> <a class="edit-text" href="/admin/edit-user?id=<%= users[i]._id %>">Edit</a></button> </td>
                     </tbody>
                     <%
                 }

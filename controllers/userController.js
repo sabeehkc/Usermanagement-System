@@ -1,12 +1,11 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 
-const securePassword = async(password)=>{
-    try{
-        const passwordHash =  bcrypt.hash(password,10);
+const securePassword = async (password) => {
+    try {
+        const passwordHash = await bcrypt.hash(password, 10);
         return passwordHash;
-        
-    }catch (error){
+    } catch (error) {
         console.log(error.message);
     }
 }
@@ -50,7 +49,7 @@ const insertUser = async(req,res)=>{
 const loginLoad = async(req, res)=>{
    try {
 
-    res.render('login');
+    res.render('login',{title:"Login Page"});
     
    } catch (error) {
         console.log(error.message);
@@ -66,7 +65,7 @@ const verifyLogin = async(req,res)=>{
 
      if(userData){
 
-     const passwordMatch = bcrypt.compare(password,userData.password);
+     const passwordMatch = await bcrypt.compare(password,userData.password);
         if (passwordMatch) {
             if(userData.is_verified === 0 ){
                 res.render('login',{message:"Email or password is incorrect!"});
@@ -88,8 +87,10 @@ const verifyLogin = async(req,res)=>{
     }
 }
 
+// Home page
 const loadHome = async(req,res)=>{
     try {
+        
         res.render('home',{title:"Home Page"})
         
     } catch (error) {
